@@ -70,6 +70,11 @@ gulp.task('clean', function () {
     return gulp.src(['.tmp', 'dist'], { read: false }).pipe($.clean());
 });
 
+gulp.task('test', function () {
+    return gulp.src('spec/test.js')
+        .pipe($.jasmine());
+});
+
 gulp.task('build', ['html', 'images', 'fonts', 'extras']);
 
 gulp.task('default', ['clean'], function () {
