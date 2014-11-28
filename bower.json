@@ -1,0 +1,23 @@
+{
+  "name": "angular-heartbeat",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.1.1",
+    "modernizr": "~2.6.2",
+    "jquery": "~1.11.0",
+    "angular": "~1.3.0"
+  },
+  "version": "0.0.1",
+  "authors": [
+    "lucianenache <enache.lucian@europe.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}

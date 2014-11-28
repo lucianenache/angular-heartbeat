@@ -1,0 +1,121 @@
+<!doctype html>
+<html ng-app="app" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+    <title>angular heartbeat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+            <div class="c" ng-controller="monitorController as vm">
+                <div class="header">
+                    <ul class="nav nav-pills pull-right">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <h3 class="text-muted">angular heartbeat</h3>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Add server</th>
+                            <th><input type="text" ng-model="vm.newUrl"></th>
+                            <th><button id="b1" ng-click="vm.addUrl()">Add</button></th>
+                           
+                            <th></th>
+                             <th><button id="b2" ng-click="vm.checkStatus()">Check All</button></th>
+                            <th><button id="b2" ng-click="vm.clearAll()">Clear All</button></th>
+                        </tr>
+                        <tr>
+                            <th>Remove</th>
+                            <th>Server</th>
+                            <th>Healthckeck present</th>
+                            <th>Status</th>
+                            <th>Uptime</th>
+                            <th>Db Name</th>
+                            <th>Db is Healthy</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="server in vm.serverList |filter:search">
+                        <tr>
+                            <td><input type="checkbox" ng-click="vm.updateSublist(server)"/></td>
+                            <td>{{server.url}}</td>
+                            <td>{{server.url | checkHealth}}</td>
+                            <td>{{server.receivedStatus.status}}/
+                                {{server.receivedStatus.statusText}}</td>
+                            <td>{{server.receivedStatus.data.uptime|convertSeconds}}</td>
+                            <td>{{server.receivedStatus.data.database.dbname}}</td>
+                            <td>{{server.receivedStatus.data.database.healthy}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="footer">
+                    <p>♥ from the Yeoman team</p>
+                </div>
+            </div>
+
+            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+            <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+            </script>
+
+            <!-- build:js scripts/vendor.js -->
+            <!-- bower:js -->
+            <script src="bower_components/jquery/dist/jquery.js">
+            </script>
+            <script src="bower_components/angular/angular.js">
+            </script>
+            <script src="bower_components/angular-route/angular-route.js">
+            </script>
+            <!-- endbower -->
+            <!-- endbuild -->
+
+            <!-- build:js scripts/plugins.js -->
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+            <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
+            <!-- endbuild -->
+
+            <!-- build:js scripts/app.js -->
+            <script src="scripts/app.module.js"></script>
+            <script src="scripts/components/monitor.controller.js"></script>
+            <script src="scripts/components/monitor.service.js"></script>
+            <script src="scripts/components/monitor.filters.js"></script>
+            <!-- endbuild -->
+        </body>
+        </html>
