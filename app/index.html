@@ -19,26 +19,22 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
-</head>
+</head> 
+
 <body>
-        <!--[if lt IE 10]>
+                <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
 
             <div class="c" ng-controller="monitorController as vm">
                 <div class="header">
-                    <ul class="nav nav-pills pull-right">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
                     <h3 class="text-muted">angular heartbeat</h3>
                 </div>
 
-                <table class="table">
+                <table class="table table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th>Add server</th>
+                            <th class="col-md-1">Add server</th>
                             <th><input type="text" ng-model="vm.newUrl"></th>
                             <th><button id="b1" ng-click="vm.addUrl()">Add</button></th>
                            
@@ -47,7 +43,7 @@
                             <th><button id="b2" ng-click="vm.clearAll()">Clear All</button></th>
                         </tr>
                         <tr>
-                            <th>Remove</th>
+                            <th class="col-md-1 text-left">Remove</th>
                             <th>Server</th>
                             <th>Healthckeck present</th>
                             <th>Status</th>
@@ -58,32 +54,26 @@
                     </thead>
                     <tbody ng-repeat="server in vm.serverList |filter:search">
                         <tr>
-                            <td><input type="checkbox" ng-click="vm.updateSublist(server)"/></td>
+                            <td><span class="close" ng-click="vm.updateSublist(server)">X</span></td>
                             <td>{{server.url}}</td>
                             <td>{{server.url | checkHealth}}</td>
-                            <td>{{server.receivedStatus.status}}/
+                            <td ng-style="server.receivedStatus.status === 200 && {'background-color': 'green'} ||
+                  server.receivedStatus.status !== 200 && {'background-color': 'orange'}"> {{server.receivedStatus.status}}/
                                 {{server.receivedStatus.statusText}}</td>
                             <td>{{server.receivedStatus.data.uptime|convertSeconds}}</td>
                             <td>{{server.receivedStatus.data.database.dbname}}</td>
-                            <td>{{server.receivedStatus.data.database.healthy}}</td>
+                            <td ng-style="server.receivedStatus.data.database.dbname && server.receivedStatus.data.database.healthy === true && {'background-color': 'green'} ||
+                  server.receivedStatus.data.database.healthy !== true && {'background-color': 'orange'}">{{server.receivedStatus.data.database.healthy}}</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="footer">
-                    <p>♥ from the Yeoman team</p>
+                    <p>Lucian Enache@2014</p>
                 </div>
             </div>
 
-            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-            <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-                function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-            </script>
+
 
             <!-- build:js scripts/vendor.js -->
             <!-- bower:js -->
