@@ -31,8 +31,8 @@ Other commands
 
 
 
-missing features:
-controls for valid IP's in add mode,
-check all (checkbox)'
-tests
-separate 'not responding' from 'not available'
+##missing features:
+1.controls for valid IPs/Urls when inserted
+2.add a select all checkbox
+3.implement unit tests
+4.Distinguish if the host is not available or returned cors response.
