@@ -33,6 +33,10 @@ Other commands
 
 ##missing features:
 1.controls for valid IPs/Urls when inserted
+
 2.add a select all checkbox
+
 3.implement unit tests
+
 4.Distinguish if the host is not available or returned cors response.
+
