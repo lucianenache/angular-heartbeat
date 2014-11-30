@@ -48,10 +48,10 @@
 
                             <th>Server</th>
                             <th>Healthckeck present</th>
-                            <th>Status</th>
+                            <th class="btn" ng-click="vm.order('receivedStatus.status',vm.reverseS=!vm.reverseS);">Status</th>
                             <th>Uptime</th>
                             <th>Db Name</th>
-                            <th>Db is Healthy</th>
+                            <th class="btn" ng-click="vm.order('receivedStatus.data.database.healthy',vm.reverseD=!vm.reverseD);">Db is Healthy</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="server in vm.serverList |filter:search">

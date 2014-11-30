@@ -18,7 +18,9 @@
 function monitorController(config,monitorService,$filter) {
 	
 	var vm = this;
-
+	var orderBy = $filter('orderBy');
+	vm.reverseS = true; // used in the orderBy filter -- server response
+	vm.reverseD = true; // used in the orderBy filter -- DB response
 	vm.serverList = config.machines
 
 	vm.checkStatus = function(selected) { //check only those that have status true
@@ -72,18 +74,13 @@ function monitorController(config,monitorService,$filter) {
 		vm.serverList.splice(vm.serverList.indexOf(checkExist(server.url)), 1);
 	};
 
-	vm.updateToCheck = function(s){
-		console.log(s);
-	}
+	vm.order = function(predicate, reverse){
+		console.log(predicate,reverse);
+    	vm.serverList = orderBy(vm.serverList, predicate, reverse);
+  	};
 
-	vm.pushPopItem = function(index){
-		//vm.indexes 
-		//if there pop/if not push
-		//handler for checkbox
-	}
-	vm.checkSelected = function(selected){
+ 	//vm.order('-status',false);
 
-	}
 
 	function checkExist(itemUrl){
 		if(!vm.serverList.length){ return null;}
