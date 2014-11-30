@@ -28,16 +28,16 @@
 				'timeout': 2000 //120 seconds
 			},
 			'machines':
-				 [{'url':'http://54.77.100.45',
+				 [{'url':'54.77.100.45',
 				 	'checked': false
 				 	}, //cors out
-				  {'url':'http://54.171.126.19/healthcheck',
-				 	'checked': false}, //we're cool
-				  {'url':'http://54.76.250.49/healthcheck',
+				  {'url':'54.171.126.19/healthcheck',
+				 	'checked': true}, //we're cool
+				  {'url':'54.76.250.49/healthcheck',
 				 	'checked': false},  //fail
-				  {'url':'http://54.171.129.65/healthcheck',
+				  {'url':'54.171.129.65/healthcheck',
 				 	'checked': false}, //we're cool
-				  {'url':'http://54.77.234.164',
+				  {'url':'54.77.234.164',
 				 	'checked': false} //cors out
 				  ]
 

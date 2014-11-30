@@ -43,7 +43,9 @@
                             <th><button id="b2" ng-click="vm.clearAll()">Clear All</button></th>
                         </tr>
                         <tr>
+                            <th>Select to check</th>
                             <th class="col-md-1 text-left">Remove</th>
+
                             <th>Server</th>
                             <th>Healthckeck present</th>
                             <th>Status</th>
@@ -54,7 +56,9 @@
                     </thead>
                     <tbody ng-repeat="server in vm.serverList |filter:search">
                         <tr>
-                            <td><span class="close" ng-click="vm.updateSublist(server)">X</span></td>
+                            <td><label class="btn" for="checked-{{$index+1}}">SelectMe</label>
+                                <input id="checked-{{$index+1}}" type="checkbox" ng-checked="server.checked" ng-model="server.checked" ng-click="updateToCheck(server)"></input></td>
+                            <td><span class="btn" ng-click="vm.updateSublist(server)">RemoveMe</span></td>
                             <td>{{server.url}}</td>
                             <td>{{server.url | checkHealth}}</td>
                             <td ng-style="server.receivedStatus.status === 200 && {'background-color': 'green'} ||
@@ -77,12 +81,9 @@
 
             <!-- build:js scripts/vendor.js -->
             <!-- bower:js -->
-            <script src="bower_components/jquery/dist/jquery.js">
-            </script>
-            <script src="bower_components/angular/angular.js">
-            </script>
-            <script src="bower_components/angular-route/angular-route.js">
-            </script>
+            <script src="bower_components/jquery/dist/jquery.js"></script>
+            <script src="bower_components/angular/angular.js"></script>
+            <script src="bower_components/angular-route/angular-route.js"></script>
             <!-- endbower -->
             <!-- endbuild -->
 

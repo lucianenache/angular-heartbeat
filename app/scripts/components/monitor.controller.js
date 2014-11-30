@@ -19,8 +19,17 @@ function monitorController(config,monitorService,$filter) {
 	
 	var vm = this;
 
-	vm.checkStatus = function() {
+	vm.serverList = config.machines
 
+	vm.checkStatus = function(selected) { //check only those that have status true
+		var servers = [];
+		var toCheck = false;
+
+		if(arguments>0){
+			servers = selected;
+		} else {
+			servers = vm.serverList;
+		}
 
 		for(var i=0; i < vm.serverList.length; i++){
 			var staticConf = config.main;
@@ -28,11 +37,16 @@ function monitorController(config,monitorService,$filter) {
 
 			tunedUrl.url = enrichUrl(vm.serverList[i].url);
 			angular.extend(staticConf,tunedUrl);
-
-			monitorService.getStatus(staticConf).then(function(j,response){
-				vm.serverList[j].receivedStatus = response;
-			}.bind(null,i));
-		}
+			if(vm.serverList[i].checked === true){
+				toCheck = true;
+				monitorService.getStatus(staticConf).then(function(j,response){
+					//match the ones to update 
+					vm.serverList[j].receivedStatus = response;
+				}.bind(null,i));
+			}
+		} if(toCheck === false){
+			console.log('at least one server should be checked!');
+		}	 
 	};
 
 	vm.clearAll = function(){
@@ -57,6 +71,19 @@ function monitorController(config,monitorService,$filter) {
 	vm.updateSublist = function(server){
 		vm.serverList.splice(vm.serverList.indexOf(checkExist(server.url)), 1);
 	};
+
+	vm.updateToCheck = function(s){
+		console.log(s);
+	}
+
+	vm.pushPopItem = function(index){
+		//vm.indexes 
+		//if there pop/if not push
+		//handler for checkbox
+	}
+	vm.checkSelected = function(selected){
+
+	}
 
 	function checkExist(itemUrl){
 		if(!vm.serverList.length){ return null;}
