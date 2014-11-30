@@ -20,14 +20,21 @@
 
 ##Instalation guide
 
-``npm install``               //package.json
-``bower install``            //bower.json
+``npm install``         --package.json
+
+``bower install``       --  bower.json
+
 ``gulp build``
 
+
 Other commands
+
 ``gulp serve``
+
 ``gulp watch``
+
 ``gulp test`` 
+
 
 
 
