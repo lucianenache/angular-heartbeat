@@ -20,9 +20,9 @@
 
 ##Instalation guide
 
-``npm install``         --package.json
+``npm install``         _package.json_
 
-``bower install``       --  bower.json
+``bower install``       _bower.json_
 
 ``gulp build``
 
